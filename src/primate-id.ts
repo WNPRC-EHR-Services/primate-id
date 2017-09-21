@@ -1,4 +1,4 @@
-import luhnN  = require('luhn-mod-n')
+import luhnN = require('luhn-mod-n')
 
 export class PrimateID {
 
