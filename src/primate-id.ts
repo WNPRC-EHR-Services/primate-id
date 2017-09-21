@@ -15,7 +15,7 @@ export class PrimateID {
   // padding character used for prefixes that are too short
   private static PREFIX_PADDER = 'X';
 
-  // length of the random character section of the id (computed by substracting
+  // length of the random character section of the id (computed by subtracting
   // the length of the prefix and the check digit from the total)
   private static RANDOM_LENGTH = PrimateID.FULLID_LENGTH - (PrimateID.PREFIX_LENGTH + 1);
 
