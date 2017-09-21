@@ -21,6 +21,9 @@ The current implementation uses the [Luhn mod N](https://en.wikipedia.org/wiki/L
 To build, execute, and test the package, use the `npm` scripts defined in `package.json`:
 
 ```sh
+# to install the dependencies
+npm install
+
 # to compile the TypeScript
 npm run build
 
