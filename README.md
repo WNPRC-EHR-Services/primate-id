@@ -11,5 +11,7 @@ primate-id    = prefix-part random-part check-digit
 prefix-part   = 4UPALPHA
 random-part   = 11(DIGIT | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "J" | "K" | "M" 
                          | "N" | "P" | "Q" | "R" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z")
-check-digit   = 1(UPALPHA | DIGIT)
+check-digit   = 1(DIGIT | UPALPHA)
 ```
+
+The current implementation uses the [Luhn mod N](https://en.wikipedia.org/wiki/Luhn_mod_N_algorithm) algorithm to generate the check digit with respect to the other fifteen characters of the PrimateID.
