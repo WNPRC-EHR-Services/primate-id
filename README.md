@@ -28,5 +28,5 @@ npm run build
 npm run generate
 
 # to run the tests in the ./test folder
-npm run test
+npm test
 ```
