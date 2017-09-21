@@ -15,3 +15,18 @@ check-digit   = 1(DIGIT | UPALPHA)
 ```
 
 The current implementation uses the [Luhn mod N](https://en.wikipedia.org/wiki/Luhn_mod_N_algorithm) algorithm to generate the check digit with respect to the other fifteen characters of the PrimateID.
+
+### For Developers
+
+To build, execute, and test the package, use the `npm` scripts defined in `package.json`:
+
+```sh
+# to compile the TypeScript
+npm run build
+
+# to print a 'WPRC' id to the console
+npm run generate
+
+# to run the tests in the ./test folder
+npm run test
+```
