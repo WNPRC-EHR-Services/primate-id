@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "tsc",
+    "generate": "npm run build && ts-node index.ts",
     "test": "npm run build && mocha --compilers ts:ts-node/register ./test/**/*.ts"
   },
   "license": "ISC",
