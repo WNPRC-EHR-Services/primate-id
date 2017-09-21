@@ -1,6 +1,6 @@
 import luhnN  = require('luhn-mod-n')
 
-export default class PrimateID {
+export class PrimateID {
 
   // characters used in the Base32-encoded random section of the id
   private static BASE32 = '0123456789ABCDEFGHJKMNPQRTUVWXYZ';
@@ -67,3 +67,5 @@ export default class PrimateID {
   }
 
 }
+
+export default new PrimateID();
