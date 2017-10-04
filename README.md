@@ -27,7 +27,7 @@ npm install
 # to compile the TypeScript
 npm run build
 
-# to print a 'WPRC' id to the console
+# to print an 'XX' id to the console
 npm run generate
 
 # to run the tests in the ./test folder

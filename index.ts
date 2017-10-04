@@ -1,3 +1,3 @@
 import PrimateID from "./lib/primate-id"
 
-console.log(PrimateID.Generate("WI"));
+console.log(PrimateID.Generate("XX"));
