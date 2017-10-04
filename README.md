@@ -8,9 +8,9 @@ The current form is defined as follows:
 ```ABNF
 primate-id    = prefix-part random-part check-digit
 
-prefix-part   = 4UPALPHA
-random-part   = 11(DIGIT | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "J" | "K" | "M" 
-                         | "N" | "P" | "Q" | "R" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z")
+prefix-part   = 2UPALPHA
+random-part   = 7(DIGIT | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "J" | "K" | "M" 
+                        | "N" | "P" | "Q" | "R" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z")
 check-digit   = 1(DIGIT | UPALPHA)
 ```
 

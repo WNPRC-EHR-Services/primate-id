@@ -6,11 +6,11 @@ export class PrimateID {
   private static BASE32 = '0123456789ABCDEFGHJKMNPQRTUVWXYZ';
 
   // length of the entire id string (in characters)
-  private static FULLID_LENGTH = 16;
+  private static FULLID_LENGTH = 10;
 
   // allowed length of the user-defined prefix portion of the id. this should always
   // be at least one less than the full id length (for the check digit)
-  private static PREFIX_LENGTH = 4;
+  private static PREFIX_LENGTH = 2;
 
   // padding character used for prefixes that are too short
   private static PREFIX_PADDER = 'X';
