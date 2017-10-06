@@ -1,6 +1,7 @@
 {
-  "name": "primate-id",
-  "author": "WNPRC",
+  "name": "@wnprc/primate-id",
+  "author": "Clay Stevens",
+  "email": "cstevens@primate.wisc.edu",
   "version": "1.0.0",
   "main": "./lib/primate-id.js",
   "types": "./lib/primate-id.d.ts",
