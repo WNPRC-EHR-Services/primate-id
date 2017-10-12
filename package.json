@@ -10,7 +10,7 @@
     "generate": "npm run build && ts-node index.ts",
     "test": "npm run build && mocha --compilers ts:ts-node/register ./test/**/*.ts"
   },
-  "license": "ISC",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@types/chai": "~4.0.4",
     "@types/mocha": "~2.2.43",
