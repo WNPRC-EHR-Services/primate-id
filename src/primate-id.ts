@@ -21,6 +21,18 @@ export class PrimateID {
 
   // valid characters for the primate id, used to compute the check digit
   private static VALUES = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  // callback function to implement the strategy pattern for generating the ids
+  private randomPartGenerator : (() => string)|null = null;
+
+  /**
+    * Overrides the default, random character generator for generating ids.
+    *
+    * @param {() => string} val - New function to execute when generating ids (or null to restore the default)
+    */
+  public set RandomPartGenerator(val: (() => string)|null) {
+    this.randomPartGenerator = val;
+  }
   
   /**
    * Generates a new PrimateID with the passed prefix. If the prefix
@@ -39,11 +51,7 @@ export class PrimateID {
     if (prefix.length < PrimateID.PREFIX_LENGTH) {
       padded = PrimateID.Pad(prefix, PrimateID.PREFIX_LENGTH, PrimateID.PREFIX_PADDER);
     }
-    const rand: string = Array.apply(null, Array(PrimateID.RANDOM_LENGTH))
-                              .map(() => PrimateID.BASE32.charAt(Math.floor(Math.random() * PrimateID.BASE32.length)))
-                              .join('');
-
-    const code: string = padded + rand;
+    const code: string = padded + this.GenerateRandomPart();
     return code + luhnN.generateCheckCharacter(code, PrimateID.VALUES);
   }
  
@@ -55,6 +63,18 @@ export class PrimateID {
    */
   public IsValid(id: string): boolean {
     return (id.length == PrimateID.FULLID_LENGTH) && luhnN.isValid(id.toUpperCase(), PrimateID.VALUES);
+  }
+
+  // generates the random part of the id. will use the default 7-random-character method if none is
+  // provided to the instance
+  private GenerateRandomPart(): string {
+    if (this.randomPartGenerator == null) {
+      return Array.apply(null, Array(PrimateID.RANDOM_LENGTH))
+                  .map(() => PrimateID.BASE32.charAt(Math.floor(Math.random() * PrimateID.BASE32.length)))
+                  .join('');
+    } else {
+      return this.randomPartGenerator();
+    }
   }
 
   // right-pads the passed string to the passed length using the passed character

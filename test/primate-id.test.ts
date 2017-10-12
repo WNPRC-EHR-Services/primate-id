@@ -47,4 +47,13 @@ describe('IsValid', () => {
   });
 });
 
+describe('RandomPartGenerator', () => {
+  it('should be override-able', () => {
+    const idpart = 'ABCDEFG';
+    PrimateID.RandomPartGenerator = () => idpart;
+    const target = PrimateID.Generate('XX');
+    expect(target).to.contain(idpart);
+  });
+})
+
 
