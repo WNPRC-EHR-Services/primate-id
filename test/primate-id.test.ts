@@ -54,9 +54,14 @@ describe('RandomPartGenerator', () => {
     const target = PrimateID.Generate('XX');
     expect(target).to.contain(validIdPart);
   });
-  it('should throw an error for invalid lengths', () => {
-    const invalidIdPart = 'ABCDEFGHIJKLMNOP';
-    PrimateID.RandomPartGenerator = () => invalidIdPart;
+  it('should throw an error for invalid lengths (long)', () => {
+    const longIdPart = 'ABCDEFGHIJKLMNOP';
+    PrimateID.RandomPartGenerator = () => longIdPart;
+    expect(() => PrimateID.Generate('XX')).to.throw('Invalid random part: must be 7 characters');
+  });
+  it('should throw an error for invalid lengths (short)', () => {
+    const shortIdPart = 'ABC';
+    PrimateID.RandomPartGenerator = () => shortIdPart;
     expect(() => PrimateID.Generate('XX')).to.throw('Invalid random part: must be 7 characters');
   });
   it('should throw an error for invalid characters', () => {
