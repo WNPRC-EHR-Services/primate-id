@@ -26,14 +26,14 @@ export class PrimateID {
   private static RANDOM_PART_VALIDATOR = new RegExp(`^[${PrimateID.VALUES}]+$`);
 
   // callback function to implement the strategy pattern for generating the ids
-  private randomPartGenerator : (() => string)|null = null;
+  private randomPartGenerator : (() => Promise<string>)|null = null;
 
   /**
     * Overrides the default, random character generator for generating ids.
     *
     * @param {() => string} val - New function to execute when generating ids (or null to restore the default)
     */
-  public set RandomPartGenerator(val: (() => string)|null) {
+  public set RandomPartGenerator(val: (() => Promise<string>)|null) {
     this.randomPartGenerator = val;
   }
   
@@ -46,7 +46,7 @@ export class PrimateID {
    * @returns {string} Newly-generated PrimateID value
    * @throws {Error} Will throw if the passed prefix is too long or if the random part generator is invalid.
    */
-  public Generate(prefix: string): string {
+  public async Generate(prefix: string): Promise<string> {
     if (prefix.length > PrimateID.PREFIX_LENGTH) {
       throw new Error(`Invalid prefix: must be ${PrimateID.PREFIX_LENGTH} or fewer characters`);
     }
@@ -54,7 +54,7 @@ export class PrimateID {
     if (prefix.length < PrimateID.PREFIX_LENGTH) {
       padded = PrimateID.Pad(prefix, PrimateID.PREFIX_LENGTH, PrimateID.PREFIX_PADDER);
     }
-    const code: string = padded + this.GenerateRandomPart();
+    const code: string = padded + await this.GenerateRandomPart();
     return code + luhnN.generateCheckCharacter(code, PrimateID.VALUES);
   }
  
@@ -70,21 +70,26 @@ export class PrimateID {
 
   // generates the random part of the id. will use the default 7-random-character method if none is
   // provided to the instance
-  private GenerateRandomPart(): string {
+  private async GenerateRandomPart(): Promise<string> {
     if (this.randomPartGenerator == null) {
-      return Array.apply(null, Array(PrimateID.RANDOM_LENGTH))
-                  .map(() => PrimateID.BASE32.charAt(Math.floor(Math.random() * PrimateID.BASE32.length)))
-                  .join('');
+      return PrimateID.DefaultRandomPartGenerator();
     } else {
-      const part: string = this.randomPartGenerator();
+      const part: string = await this.randomPartGenerator();
       if (part.length != PrimateID.RANDOM_LENGTH) {
         throw new Error(`Invalid random part: must be ${PrimateID.RANDOM_LENGTH} characters`);
       }
       if (!PrimateID.RANDOM_PART_VALIDATOR.test(part)) {
         throw new Error(`Invalid random part: contains invalid characters (alphanumeric only)`);
       }
-      return this.randomPartGenerator();
+      return part;
     }
+  }
+
+  // default, 7-random-character generator method
+  private static DefaultRandomPartGenerator(): Promise<string> {
+      return Promise.resolve(Array.apply(null, Array(PrimateID.RANDOM_LENGTH))
+                    .map(() => PrimateID.BASE32.charAt(Math.floor(Math.random() * PrimateID.BASE32.length)))
+                    .join(''));
   }
 
   // right-pads the passed string to the passed length using the passed character

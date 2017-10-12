@@ -1,3 +1,3 @@
 import PrimateID from "./lib/primate-id"
 
-console.log(PrimateID.Generate("XX"));
+PrimateID.Generate('XX').then(x => console.log(x));
