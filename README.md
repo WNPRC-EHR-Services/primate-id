@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/%40wnprc%2Fprimate-id.svg)](https://badge.fury.io/js/%40wnprc%2Fprimate-id)
+
 # PrimateID
 
 This Typescript library provides a reference implementation for generating and validating random-yet-prefixed "universal" ids for animals housed at various primate research facilities around the country.
