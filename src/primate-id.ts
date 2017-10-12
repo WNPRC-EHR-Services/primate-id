@@ -22,6 +22,9 @@ export class PrimateID {
   // valid characters for the primate id, used to compute the check digit
   private static VALUES = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
+  // validation regex for the random part
+  private static RANDOM_PART_VALIDATOR = new RegExp(`^[${PrimateID.VALUES}]+$`);
+
   // callback function to implement the strategy pattern for generating the ids
   private randomPartGenerator : (() => string)|null = null;
 
@@ -41,7 +44,7 @@ export class PrimateID {
    *
    * @param {string} prefix - Prefix to prepend on the id
    * @returns {string} Newly-generated PrimateID value
-   * @throws {Error} Will throw if the passed prefix is too long.
+   * @throws {Error} Will throw if the passed prefix is too long or if the random part generator is invalid.
    */
   public Generate(prefix: string): string {
     if (prefix.length > PrimateID.PREFIX_LENGTH) {
@@ -73,6 +76,13 @@ export class PrimateID {
                   .map(() => PrimateID.BASE32.charAt(Math.floor(Math.random() * PrimateID.BASE32.length)))
                   .join('');
     } else {
+      const part: string = this.randomPartGenerator();
+      if (part.length != PrimateID.RANDOM_LENGTH) {
+        throw new Error(`Invalid random part: must be ${PrimateID.RANDOM_LENGTH} characters`);
+      }
+      if (!PrimateID.RANDOM_PART_VALIDATOR.test(part)) {
+        throw new Error(`Invalid random part: contains invalid characters (alphanumeric only)`);
+      }
       return this.randomPartGenerator();
     }
   }

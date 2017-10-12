@@ -49,10 +49,20 @@ describe('IsValid', () => {
 
 describe('RandomPartGenerator', () => {
   it('should be override-able', () => {
-    const idpart = 'ABCDEFG';
-    PrimateID.RandomPartGenerator = () => idpart;
+    const validIdPart = 'ABCDEFG';
+    PrimateID.RandomPartGenerator = () => validIdPart;
     const target = PrimateID.Generate('XX');
-    expect(target).to.contain(idpart);
+    expect(target).to.contain(validIdPart);
+  });
+  it('should throw an error for invalid lengths', () => {
+    const invalidIdPart = 'ABCDEFGHIJKLMNOP';
+    PrimateID.RandomPartGenerator = () => invalidIdPart;
+    expect(() => PrimateID.Generate('XX')).to.throw('Invalid random part: must be 7 characters');
+  });
+  it('should throw an error for invalid characters', () => {
+    const invalidIdPart = '!@#$%^ ';
+    PrimateID.RandomPartGenerator = () => invalidIdPart;
+    expect(() => PrimateID.Generate('XX')).to.throw('Invalid random part: contains invalid characters (alphanumeric only)');
   });
 })
 
