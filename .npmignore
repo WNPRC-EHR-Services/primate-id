@@ -5,6 +5,9 @@ node_modules/
 # skip the build artifacts
 lib/
 
+# skip the code coverage output
+.nyc_output/
+
 # skip user-specific IntelliJ settings
 .idea/**/workspace.xml
 .idea/**/tasks.xml
