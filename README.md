@@ -16,7 +16,7 @@ random-part   = 7(DIGIT | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "J" | 
 check-digit   = 1(DIGIT | UPALPHA)
 ```
 
-The current implementation uses the [Luhn mod N](https://en.wikipedia.org/wiki/Luhn_mod_N_algorithm) algorithm to generate the check digit with respect to the other fifteen characters of the PrimateID.
+The current implementation uses the [Luhn mod N](https://en.wikipedia.org/wiki/Luhn_mod_N_algorithm) algorithm to generate the check digit with respect to the other nine characters of the PrimateID.
 
 ### For Developers
 
