@@ -10,9 +10,7 @@ src/
 test/
 
 # skip user-specific IntelliJ settings
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/dictionaries
+.idea/
 
 # skip the module definitions
 **/*.iml
