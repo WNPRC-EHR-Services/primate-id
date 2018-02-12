@@ -1,9 +1,9 @@
-
 # skip the npm dependencies
 node_modules/
 
-# skip the build artifacts
-lib/
+# skip the source code
+tsconfig.json
+src/
 
 # skip the code coverage output
 .nyc_output/

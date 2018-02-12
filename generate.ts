@@ -1,3 +1,2 @@
-import PrimateID from "./lib/primate-id"
-
+import PrimateID from './lib/primate-id';
 PrimateID.Generate('XX').then(x => console.log(x));
