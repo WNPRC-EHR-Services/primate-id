@@ -5,8 +5,9 @@ node_modules/
 tsconfig.json
 src/
 
-# skip the code coverage output
+# skip the tests and code coverage output
 .nyc_output/
+test/
 
 # skip user-specific IntelliJ settings
 .idea/**/workspace.xml
