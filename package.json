@@ -2,7 +2,7 @@
   "name": "@wnprc/primate-id",
   "author": "Clay Stevens",
   "email": "cstevens@primate.wisc.edu",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "main": "./lib/primate-id.js",
   "types": "./lib/primate-id.d.ts",
   "scripts": {
