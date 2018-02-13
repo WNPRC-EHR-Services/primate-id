@@ -18,6 +18,21 @@ check-digit   = 1(DIGIT | UPALPHA)
 
 The current implementation uses the [Luhn mod N](https://en.wikipedia.org/wiki/Luhn_mod_N_algorithm) algorithm to generate the check digit with respect to the other nine characters of the PrimateID.
 
+### For Users
+
+There are two implementations included in this library--a synchronous implementation and an asynchronous, Promise-based implementation. To use each one, import the corresponding class from the library as shown in the following example:
+```TypeScript
+import * as PrimateID from '@wnprc/primate-id';
+
+// using the asynchronous version (Generate returns a Promise<string>)
+const async = new PrimateID.Async();
+async.Generate('XX').then(x => console.log(x));
+
+// using the synchronous version (Generate returns a string)
+const sync = new PrimateID.Sync();
+console.log(sync.Generate('XX'));
+```
+
 ### For Developers
 
 To build, execute, and test the package, use the `npm` scripts defined in `package.json`:

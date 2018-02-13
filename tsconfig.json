@@ -1,18 +1,25 @@
 {
-  "compilerOptions" : {
-    "lib"         : [ "es2015" ],
-    "module"      : "commonjs",
-    "target"      : "ES5",
-    "outDir"      : "lib",
-    "rootDirs"    : [ "src", "test" ],
-    "sourceMap"   : true,
-    "declaration" : true
+  "compilerOptions": {
+    "lib": [
+      "es2015",
+      "es2015.promise",
+      "dom"
+    ],
+    "module": "commonjs",
+    "target": "ES5",
+    "outDir": "lib",
+    "rootDirs": [
+      "src",
+      "test"
+    ],
+    "sourceMap": true,
+    "declaration": true
   },
-  "exclude" : [
+  "exclude": [
     "node_modules",
     "lib"
   ],
-  "include" : [
+  "include": [
     "src/primate-id.ts"
   ]
 }
